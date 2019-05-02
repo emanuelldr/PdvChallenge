@@ -6,6 +6,7 @@
 
 - .Net Core 
 - Postgre/Postgis 
+- EF Core
 - Docker 
 - Docker-Compose 
 - Swagger
@@ -23,7 +24,7 @@
 
 ## Executar o Projeto 
 
-- Para executar o projeto, basta rodar os 2 comandos à seguir:
+- Para executar o projeto, basta rodar os 2 comandos à seguir na pasta raiz do projeto:
 		
 		- 1º - "docker-compose up --build -d"  - Para subir os containers de banco e web api
 		- 2º - "docker-compose exec db_postgres psql -U PdvUser -d PdvDb -1 -f /data/postgres/PdvDbEntryPoint.sql"  - Criação das tabelas no banco
