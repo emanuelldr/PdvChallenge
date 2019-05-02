@@ -1,0 +1,39 @@
+version: '3.4'
+networks:
+  pdv-network:
+    driver: bridge 
+services:
+  web:
+    image: dockerapi:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"    
+    environment: 
+      DB_CONNECTION_STRING: "host=db_postgres;port=5432;database=PdvDb;username=PdvUser;password=PdvPass"
+    networks: 
+      - pdv-network
+    depends_on:
+      - "db_postgres"
+  db_postgres:
+    image: postgres:9.6-alpine
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    volumes:
+      - "./data/postgres:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_DB: "PdvDb"
+      POSTGRES_USER: "PdvUser"
+      POSTGRES_PASSWORD: "PdvPass" 
+    networks:
+    - pdv-network
+volumes:
+  db_volume:
+
+  
+    
+     
